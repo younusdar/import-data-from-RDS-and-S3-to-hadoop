@@ -1,0 +1,15 @@
+#List tables in rds databasename=mlctest,username=student,password=STUDENT123
+sqoop list-tables –-connect jdbc:mysql://mlc-testcapstone.cyaielc9bmnf.us-east-1.rds.amazonaws.com/mlctest --username student --password STUDENT123;
+
+import data FROM RDS TO HDFS
+sqoop import --connect jdbc:mysql://mlc-testcapstone.cyaielc9bmnf.us-east-1.rds.amazonaws.com/mlctest --table app_events --target-dir /user/hadoop/app_events/  --username student --password STUDENT123 -m 1
+
+From s3  simply using  
+
+wget link of the public s3 file
+dumping data to s3  export data to s3 from hdfs using hive
+
+
+tables created in hive should be external
+create table table_name(column_names types)row format delimited fields terminated by ',' lines terminated by '\n' STORED AS TEXTFILE LOCATION "s3://bucket link"; 
+INSERT OVERWRITE TABLE table_name select columns from existing table in hive;
